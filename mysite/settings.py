@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'menu',
     # 'debug_toolbar',
+    'menu',
+  
     
 ]
 
@@ -122,8 +123,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Django Debug Toolbar Settings
-# INTERNAL_IPS = ['0.0.0.0']
+# DEBUG_TOOLBAR_CONFIG = {
+#      'SHOW_TOOLBAR_CALLBACK': lambda x: True,
+# }
 # DEBUG_TOOLBAR_PATCH_SETTINGS = False
-DEBUG_TOOLBAR_CONFIG = {
-     'SHOW_TOOLBAR_CALLBACK': lambda x: True,
-}

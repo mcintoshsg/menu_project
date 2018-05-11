@@ -13,12 +13,13 @@ from .forms import *
 
 def menu_list(request):
     """ list out all menus """
-    last_menu_created_date = datetime(2012,1,1, tzinfo=pytz.timezone('Australia/Adelaide'))
+    last_menu_created_date = datetime(2016,1,1, tzinfo=pytz.timezone('Australia/Adelaide'))
    
     all_menus = Menu.objects.all().prefetch_related('items')
     menus = all_menus.filter(
                             expiration_date__gte=last_menu_created_date
                             ).order_by('expiration_date')
+  
     return render(request, 'menu/list_all_current_menus.html', {'menus': menus})   
 
 def menu_detail(request, pk):
@@ -43,13 +44,11 @@ def create_new_menu(request):
             return redirect('menu:menu_detail', pk=menu.pk)
     
     form = MenuForm()
-    print('here')
     return render(request, 'menu/menu_new.html', {'form': form})
 
 def edit_menu(request, pk):
     """edit a menu"""
     menu = get_object_or_404(Menu, pk=pk)
-    print(menu)
     if request.method == "POST":
         form = MenuForm(instance=menu, data=request.POST)
         if form.is_valid:
